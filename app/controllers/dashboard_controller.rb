@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
-   def weather
-    @weather = OpenWeatherMapService.get_weather_by_city("Nairobi")
-   end 
+  def weather
+    @weather = GetCurrentWeatherData.call(city: "Nairobi")
+    @forecast_data = GetForecastWeatherData.call(city: "Nairobi")
+  end
 end
