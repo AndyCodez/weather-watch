@@ -1,0 +1,5 @@
+<div class="weather">
+  <p><%= weather %></p>
+  <%= image_tag "https://openweathermap.org/img/wn/#{weather["icon"]}.png"%>
+  <%= weather["description"].capitalize %>
+</div>

@@ -1,14 +1,11 @@
 <div class="current-weather">
   <h2>Current weather</h2>
-  <p><%= @weather %></p>
-  <%= image_tag "https://openweathermap.org/img/wn/#{@weather[0]["icon"]}.png"%>
-  <%= @weather[0]["description"].capitalize %>
+  <%= render partial: 'weather', locals: {weather: @weather[0]} %>
 </div>
 <div class="forecast">
   <h2>5-day Weather Forecast</h2>
   <% @forecast_data.each do |day| %>
-    <%= image_tag "https://openweathermap.org/img/wn/#{day["weather"][0]["icon"]}.png"%>
-    <%= day["weather"][0]["description"].capitalize %>
+    <%= render partial: 'weather', locals: {weather: day["weather"][0]} %>
     <%= day["dt_txt"] %>
   <% end %>
 </div>
