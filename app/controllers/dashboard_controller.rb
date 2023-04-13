@@ -1,7 +1,8 @@
 class DashboardController < ApplicationController
   def weather
-    @weather = GetCurrentWeatherData.call(city: params[:city])
-    @forecast_data = GetForecastWeatherData.call(city: params[:city])
+    @city = params[:city]
+    @weather = GetCurrentWeatherData.call(city: @city)
+    @forecast_data = GetForecastWeatherData.call(city: @city)
   end
 
   def search_cities
