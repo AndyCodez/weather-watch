@@ -1,5 +1,5 @@
-<div class="weather flex items-center bg-gray-100 p-4 rounded-lg mx-auto my-4">
-  <%= image_tag "https://openweathermap.org/img/wn/#{weather["icon"]}.png", class: "w-10 h-10"%>
+<div class="weather flex items-center bg-gray-100 p-4 rounded-lg mx-auto my-4 hover:bg-gray-200">
+  <%= image_tag "https://openweathermap.org/img/wn/#{weather["icon"]}.png", class: "w-20 h-20"%>
   <div class="ml-4">
     <div class="text-gray-700 font-bold text-lg capitalize"><%= weather["description"] %></div>
     <span class="text-gray-500 text-sm"><%= date_time.strftime('%b %d, %Y') %></span>
