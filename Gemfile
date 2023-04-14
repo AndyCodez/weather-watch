@@ -59,3 +59,5 @@ gem "tailwindcss-rails", "~> 2.0"
 
 gem "httparty", "~> 0.21.0"
 gem 'dotenv-rails', groups: [:development, :test]
+
+gem "devise", "~> 4.9"
