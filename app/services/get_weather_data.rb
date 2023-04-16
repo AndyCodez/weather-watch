@@ -1,6 +1,6 @@
 require "httparty"
 
-class GetForecastWeatherData
+class GetWeatherData
   include HTTParty
   base_uri "https://api.openweathermap.org/data/2.5/forecast"
   attr_reader :location
@@ -10,10 +10,10 @@ class GetForecastWeatherData
   end
 
   def self.call(location:)
-    new(location: location).get_forecast_data
+    new(location: location).get_weather_data
   end
 
-  def get_forecast_data
+  def get_weather_data
     begin
       response = self.class.get("/?q=#{@location}&appid=#{ENV["OPEN_WEATHER_MAP_API_KEY"]}")
       return JSON.parse(response.body)["list"]
