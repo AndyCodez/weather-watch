@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "dashboard#search_cities"
-  get "/view_weather/:city", to: "dashboard#weather", as: "/view_weather"
-  get "/cities/favorite_cities", to: "cities#favorite_cities", as: "/favorite_cities"
-  post "/cities/add_to_favorites", to: "cities#add_to_favorites", as: "/add_to_favorites"
-  delete "/cities/remove_from_favorites/:city_id", to: "cities#remove_from_favorites", as: "/remove_from_favorites"
+  root "dashboard#search_locations"
+  get "/view_weather/:location", to: "dashboard#weather", as: "/view_weather"
+  get "/locations/favorite_locations", to: "locations#favorite_locations", as: "/favorite_locations"
+  post "/locations/add_to_favorites", to: "locations#add_to_favorites", as: "/add_to_favorites"
+  delete "/locations/remove_from_favorites/:location_id", to: "locations#remove_from_favorites", as: "/remove_from_favorites"
 end

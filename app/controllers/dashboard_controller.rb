@@ -1,20 +1,20 @@
 class DashboardController < ApplicationController
   def weather
-    @city = params[:city]
-    @weather = GetCurrentWeatherData.call(city: @city)
-    @forecast_data = GetForecastWeatherData.call(city: @city).drop(1) # Ignore first record
+    @location = params[:location]
+    @weather = GetCurrentWeatherData.call(location: @location)
+    @forecast_data = GetForecastWeatherData.call(location: @location).drop(1) # Ignore first record
   end
 
-  def search_cities
+  def search_locations
     search_query = params[:search_query]
     if search_query.present?
-      @cities = SearchCities.search_cities(search_query)
-      if @cities.count == 0
-        flash.now[:warning] = "City not found"
-        render "search_cities"
+      @locations = SearchLocations.search_locations(search_query)
+      if @locations.count == 0
+        flash.now[:warning] = "Location not found"
+        render "search_locations"
       end
     else
-      @cities = []
+      @locations = []
     end
   end
 end

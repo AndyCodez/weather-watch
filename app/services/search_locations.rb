@@ -1,8 +1,8 @@
-class SearchCities
+class SearchLocations
   include HTTParty
   base_uri "https://api.openweathermap.org/data/2.5"
 
-  def self.search_cities(query)
+  def self.search_locations(query)
     response = get("/find", query: {
                               q: query,
                               type: "like",
@@ -12,13 +12,13 @@ class SearchCities
 
     return [] unless response.success?
 
-    cities = response["list"].map do |city|
+    locations = response["list"].map do |location|
       {
-        name: city["name"],
-        country: city["sys"]["country"],
+        name: location["name"],
+        country: location["sys"]["country"],
       }
     end
 
-    cities.uniq
+    locations.uniq
   end
 end

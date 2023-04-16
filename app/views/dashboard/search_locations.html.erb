@@ -1,0 +1,11 @@
+<%= form_tag('/', method: 'get') do %>
+  <%= label_tag(:location, "Location:") %>
+  <%= text_field_tag(:search_query, "#{params[:search_query]}") %>
+  <%= submit_tag('Search') %>
+<% end %>
+<ul id="location-results">
+  <% @locations.each do |location| %>
+    <li><%= "#{location[:name]}, #{location[:country]}" %></li>
+    <%= link_to "View Weather", view_weather_path(location: location[:name]) %>
+  <% end %>
+</ul>

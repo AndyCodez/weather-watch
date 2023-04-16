@@ -1,0 +1,13 @@
+<h1>Favorite Locations</h1>
+<%if @locations.count > 0 %>
+  <ul>
+    <% @locations.each do |location| %>
+      <li>
+        <%= location.name%>
+        <%= link_to "Remove from favorites", remove_from_favorites_path(location_id: location.id), method: :delete, class: "bg-blue-500 text-white py-2 px-4 rounded mr-4" %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>User has no favorite locations.</p>
+<% end %>
