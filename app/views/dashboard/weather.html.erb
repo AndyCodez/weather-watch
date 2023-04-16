@@ -1,7 +1,7 @@
 <div class="container mx-auto mt-8">
-  <h1 class="text-3xl font-bold mb-4"><%= @location %></h1>
+  <h1 class="text-3xl font-bold mb-4"><%= "#{@location[:name]}, #{@location[:country_code]}" %></h1>
   <div class="flex items-center mb-4">
-    <%= link_to "Add to favorites", add_to_favorites_path(location_name: @location), method: :post, class: "bg-blue-500 text-white py-2 px-4 rounded mr-4" %>
+    <%= link_to "Add to favorites", add_to_favorites_path(location: @location), method: :post, class: "bg-blue-500 text-white py-2 px-4 rounded mr-4" %>
   </div>
   <div class="current-weather">
     <h2 class="text-2xl font-bold mb-4">Current weather</h2>

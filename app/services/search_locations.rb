@@ -15,7 +15,7 @@ class SearchLocations
     locations = response["list"].map do |location|
       {
         name: location["name"],
-        country: location["sys"]["country"],
+        country_code: location["sys"]["country"],
       }
     end
 
