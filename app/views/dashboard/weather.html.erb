@@ -5,7 +5,7 @@
   </div>
   <div class="current-weather">
     <h2 class="text-2xl font-bold mb-4">Current weather</h2>
-    <%= render partial: 'weather', locals: {weather: @weather[0], date_time: Time.now} %>
+    <%= render partial: 'weather', locals: {weather: @current_weather, date_time: Time.now} %>
   </div>
   <div class="forecast">
     <h2 class="text-2xl font-bold mb-4">5-day Weather Forecast</h2>
