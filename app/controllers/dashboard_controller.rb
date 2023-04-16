@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  def weather
+  def view_weather
     @location = { name: params[:location], country_code: params[:country_code] }
     response = GetWeatherData.call(location: @location)
     @current_weather = response.first["weather"].first
