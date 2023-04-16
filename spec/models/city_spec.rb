@@ -21,5 +21,10 @@ RSpec.describe City, type: :model do
       city = City.create(name: "", user_id: user.id)
       expect(city).to_not be_valid
     end
+
+    it "is invalid without a user" do
+      city = City.create(name: "", user_id: nil)
+      expect(city).to_not be_valid
+    end
   end
 end
