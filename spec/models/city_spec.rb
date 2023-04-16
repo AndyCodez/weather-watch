@@ -27,4 +27,11 @@ RSpec.describe City, type: :model do
       expect(city).to_not be_valid
     end
   end
+
+  describe "associations" do
+    it "belongs to user" do
+      city = City.reflect_on_association(:user)
+      expect(city.macro).to eq(:belongs_to)
+    end
+  end
 end
