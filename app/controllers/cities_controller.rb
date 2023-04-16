@@ -11,4 +11,12 @@ class CitiesController < ApplicationController
   def favorite_cities
     @cities = current_user.cities
   end
+
+  def remove_from_favorites
+    city = City.find(params[:city_id])
+    city.destroy!
+    respond_to do |format|
+      format.html { redirect_to favorite_cities_path }
+    end
+  end
 end
