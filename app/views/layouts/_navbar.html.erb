@@ -1,12 +1,12 @@
     <nav class="bg-white shadow-md">
   <div class="container mx-auto px-4">
     <div class="flex justify-between items-center py-4">
-      <a href="/" class="text-lg font-semibold">WeatherWatch</a>
+      <%= link_to "WeatherWatch", root_path, class: "text-lg font-semibold" %>
       <ul class="flex space-x-4">
         <%if user_signed_in? %>
-          <li><a href="#" class="text-gray-600 hover:text-gray-800">Search Cities</a></li>
+          <%= link_to "Search Cities", root_path, class: "text-gray-600 hover:text-gray-800" %>
           <%= link_to "Favorite Cities", favorite_cities_path, class: "text-gray-600 hover:text-gray-800" %>
-          <li><a href="#" class="text-gray-600 hover:text-gray-800">Sign Out</a></li>
+          <%= link_to "Sign Out", destroy_user_session_path, class: "text-gray-600 hover:text-gray-800" %>
         <% else %>
           <%= link_to "Sign In", new_user_session_url, class: "text-gray-600 hover:text-gray-800" %>
         <% end %>
