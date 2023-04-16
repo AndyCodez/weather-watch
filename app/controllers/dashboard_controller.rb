@@ -7,6 +7,14 @@ class DashboardController < ApplicationController
 
   def search_cities
     search_query = params[:search_query]
-    @cities = SearchCities.search_cities(search_query)
+    if search_query.present?
+      @cities = SearchCities.search_cities(search_query)
+      if @cities.count == 0
+        flash.now[:warning] = "City not found"
+        render "search_cities"
+      end
+    else
+      @cities = []
+    end
   end
 end
