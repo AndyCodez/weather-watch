@@ -3,9 +3,13 @@
     <div class="flex justify-between items-center py-4">
       <a href="/" class="text-lg font-semibold">WeatherWatch</a>
       <ul class="flex space-x-4">
-        <li><a href="#" class="text-gray-600 hover:text-gray-800">Search Cities</a></li>
-        <li><a href="#" class="text-gray-600 hover:text-gray-800">Favorites</a></li>
-        <li><a href="#" class="text-gray-600 hover:text-gray-800">Sign Out</a></li>
+        <%if user_signed_in? %>
+          <li><a href="#" class="text-gray-600 hover:text-gray-800">Search Cities</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-gray-800">Favorites</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-gray-800">Sign Out</a></li>
+        <% else %>
+          <%= link_to "Sign In", new_user_session_url, class: "text-gray-600 hover:text-gray-800" %>
+        <% end %>
       </ul>
     </div>
   </div>
