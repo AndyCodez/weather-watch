@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   def add_to_favorites
-    location = current_user.locations.build(name: params[:location][:name])
+    location = current_user.locations.build(name: params[:location][:name], country_code: params[:location][:country_code])
     if location.save
       respond_to do |format|
         format.html {

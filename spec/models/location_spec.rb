@@ -2,13 +2,13 @@ require "rails_helper"
 
 RSpec.describe Location, type: :model do
   describe "validations" do
-    it "is valid with a name and user" do
+    it "is valid with a name, country_code, and user" do
       user = User.create(
         email: "johndoe@example.com",
         password: "password123",
         password_confirmation: "password123",
       )
-      location = Location.create(name: "Nairobi", user_id: user.id)
+      location = Location.create(name: "Nairobi", country_code: "KE", user_id: user.id)
       expect(location).to be_valid
     end
 
@@ -18,7 +18,17 @@ RSpec.describe Location, type: :model do
         password: "password123",
         password_confirmation: "password123",
       )
-      location = Location.create(name: "", user_id: user.id)
+      location = Location.create(name: "", country_code: "KE", user_id: user.id)
+      expect(location).to_not be_valid
+    end
+
+    it "is invalid without a country code" do
+      user = User.create(
+        email: "johndoe@example.com",
+        password: "password123",
+        password_confirmation: "password123",
+      )
+      location = Location.create(name: "Nairobi", country_code: "", user_id: user.id)
       expect(location).to_not be_valid
     end
 
@@ -33,9 +43,9 @@ RSpec.describe Location, type: :model do
         password: "password123",
         password_confirmation: "password123",
       )
-      location1 = Location.create(name: "Nairobi", user_id: user.id)
+      location1 = Location.create(name: "Nairobi", country_code: "KE", user_id: user.id)
       expect(location1).to be_valid
-      location2 = Location.create(name: "Nairobi", user_id: user.id)
+      location2 = Location.create(name: "Nairobi", country_code: "KE", user_id: user.id)
       expect(location2).to_not be_valid
 
       user2 = User.create(
@@ -43,7 +53,7 @@ RSpec.describe Location, type: :model do
         password: "password123",
         password_confirmation: "password123",
       )
-      location2 = Location.create(name: "Nairobi", user_id: user2.id)
+      location2 = Location.create(name: "Nairobi", country_code: "KE", user_id: user2.id)
       expect(location2).to be_valid
     end
   end

@@ -3,4 +3,5 @@ class Location < ApplicationRecord
 
   validates :name, presence: true
   validates :name, uniqueness: { scope: :user_id }
+  validates :country_code, presence: true
 end
