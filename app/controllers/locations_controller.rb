@@ -22,7 +22,7 @@ class LocationsController < ApplicationController
   end
 
   def remove_from_favorites
-    location = location.find(params[:location_id])
+    location = Location.find(params[:location_id])
     location.destroy!
     respond_to do |format|
       format.html { redirect_to favorite_locations_path }
