@@ -7,12 +7,15 @@ class LocationsController < ApplicationController
           flash[:notice] = "Added to favorites successfully."
           redirect_to favorite_locations_path
         }
+        format.json { render json: { status: "success", message: "Added to favorites successfully" }, status: :ok }
       end
     else
       respond_to do |format|
         format.html {
+          flash[:warning] = "#{location.errors.full_messages[0]}"
           redirect_to favorite_locations_path
         }
+        format.json { render json: { status: "error", message: "#{location.errors.full_messages[0]}" }, status: :unprocessable_entity }
       end
     end
   end
