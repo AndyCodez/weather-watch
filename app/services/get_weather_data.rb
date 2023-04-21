@@ -3,7 +3,6 @@ require "httparty"
 class GetWeatherData
   include HTTParty
   base_uri "https://api.openweathermap.org/data/2.5/forecast"
-  attr_reader :location
 
   def initialize(location:)
     @location = location
