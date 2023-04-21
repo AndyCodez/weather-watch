@@ -22,6 +22,9 @@ class LocationsController < ApplicationController
 
   def favorite_locations
     @locations = current_user.locations
+    respond_to do |format|
+      format.json { render json: { locations: @locations } }
+    end
   end
 
   def remove_from_favorites
@@ -29,6 +32,7 @@ class LocationsController < ApplicationController
     location.destroy!
     respond_to do |format|
       format.html { redirect_to favorite_locations_path }
+      format.json { render json: { message: "Location removed from favorites successfully" }, status: :ok }
     end
   end
 end
