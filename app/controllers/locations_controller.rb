@@ -23,6 +23,7 @@ class LocationsController < ApplicationController
   def favorite_locations
     @locations = current_user.locations
     respond_to do |format|
+      format.html
       format.json { render json: { locations: @locations } }
     end
   end
