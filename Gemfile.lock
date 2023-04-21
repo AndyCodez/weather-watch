@@ -92,6 +92,11 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -161,6 +166,10 @@ GEM
       bundler (>= 1.15.0)
       railties (= 6.1.7.3)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -254,6 +263,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise (~> 4.9)
   dotenv-rails
+  factory_bot_rails
   httparty (~> 0.21.0)
   jbuilder (~> 2.7)
   listen (~> 3.3)
@@ -261,6 +271,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.7, >= 6.1.7.3)
+  rails-controller-testing
   rspec-rails (~> 6.0.0)
   selenium-webdriver (>= 4.0.0.rc1)
   spring
