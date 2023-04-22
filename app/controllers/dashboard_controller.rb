@@ -12,8 +12,7 @@ class DashboardController < ApplicationController
   end
 
   def search_locations
-    search_query = params[:search_query]
-    @locations = search_query.present? ? SearchLocations.call(search_query) : []
+    @locations = params[:search_query].present? ? SearchLocations.call(params[:search_query]) : []
 
     if @locations.any?
       respond_to do |format|
