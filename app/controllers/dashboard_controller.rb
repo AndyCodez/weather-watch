@@ -13,28 +13,18 @@ class DashboardController < ApplicationController
 
   def search_locations
     search_query = params[:search_query]
-    if search_query.present?
-      @locations = SearchLocations.call(search_query)
+    @locations = search_query.present? ? SearchLocations.call(search_query) : []
 
-      if @locations.count == 0
-        flash.now[:warning] = "Location not found"
-
-        respond_to do |format|
-          format.html { render "search_locations" }
-          format.json { render json: { error: "Location not found" }, status: :not_found }
-        end
-      else
-        respond_to do |format|
-          format.html
-          format.json { render json: { locations: @locations } }
-        end
-      end
-    else
-      @locations = []
-
+    if @locations.any?
       respond_to do |format|
         format.html
         format.json { render json: { locations: @locations } }
+      end
+    else
+      flash.now[:warning] = "Location not found"
+      respond_to do |format|
+        format.html { render "search_locations" }
+        format.json { render json: { error: "Location not found" }, status: :not_found }
       end
     end
   end
