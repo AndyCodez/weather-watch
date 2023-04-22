@@ -61,4 +61,38 @@ RSpec.describe DashboardController, type: :controller do
       end
     end
   end
+
+  describe "GET #view_weather" do
+    context "when user is authenticated" do
+      before do
+        user = FactoryBot.create(:user)
+        sign_in user
+      end
+
+      it "renders the view" do
+        get :view_weather, params: { location: "Nairobi", country_code: "KE" }
+        expect(response).to render_template(:view_weather)
+      end
+
+      it "responds with JSON data if format is json" do
+        current_weather = { "weather" => [{ "description" => "Clear sky" }] }
+        forecast_data = [{ "dt" => 1649450400, "temp" => { "day" => 15.84 } }]
+        weather_data = { location: { name: "Nairobi", country_code: "KE" }, current_weather: current_weather, forecast_data: forecast_data }
+        allow(GetWeatherData).to receive(:call).and_return(weather_data)
+        get :view_weather, params: { location: "Nairobi", country_code: "KE" }, format: :json
+        expect(response.content_type).to eq("application/json; charset=utf-8")
+        json = JSON.parse(response.body)
+        expect(json["weather_data"]["location"]).to eq({ "name" => "Nairobi", "country_code" => "KE" })
+        expect(json["weather_data"]["current_weather"]).to eq(current_weather)
+        expect(json["weather_data"]["forecast_data"]).to eq(forecast_data)
+      end
+    end
+
+    context "when user is not authenticated" do
+      it "redirects to sign-in page" do
+        get :view_weather, params: { location: "Nairobi", country_code: "KE" }
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+  end
 end
