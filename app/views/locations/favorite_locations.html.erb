@@ -3,7 +3,7 @@
   <% if @locations.count > 0 %>
     <ul class="list-disc pl-4">
       <% @locations.each do |location| %>
-        <li class="flex justify-between items-center mb-4">
+        <li class="flex justify-between items-center mb-4 w-3/12">
           <span>
             <%= link_to "#{location.name}, #{location.country_code}", view_weather_path(location: location.name, country_code: location.country_code), class: "text-blue-500 hover:underline" %>
           </span>
