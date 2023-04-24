@@ -86,6 +86,26 @@ RSpec.describe DashboardController, type: :controller do
         expect(json["weather_data"]["current_weather"]).to eq(current_weather)
         expect(json["weather_data"]["forecast_data"]).to eq(forecast_data)
       end
+
+      context "with invalid parameters" do
+        before do
+          allow(GetWeatherData).to receive(:call).and_raise("Unable to fetch weather data")
+          get :view_weather, params: { location: "Invalid location", country_code: "XX" }
+        end
+
+        it "sets a flash message" do
+          expect(flash[:warning]).to be_present
+        end
+
+        it "redirects to the root URL" do
+          expect(response).to redirect_to(root_url)
+        end
+
+        it "responds with JSON format when requested" do
+          get :view_weather, params: { location: "Invalid location", country_code: "XX" }, format: :json
+          expect(response.content_type).to eq("application/json; charset=utf-8")
+        end
+      end
     end
 
     context "when user is not authenticated" do
