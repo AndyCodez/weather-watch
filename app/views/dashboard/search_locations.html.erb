@@ -1,11 +1,17 @@
-<%= form_tag('/', method: 'get') do %>
-  <%= label_tag(:location, "Location:") %>
-  <%= text_field_tag(:search_query, "#{params[:search_query]}") %>
-  <%= submit_tag('Search') %>
-<% end %>
-<ul id="location-results">
-  <% @locations.each do |location| %>
-    <li><%= "#{location[:name]}, #{location[:country_code]}" %></li>
-    <%= link_to "View Weather", view_weather_path(location: location[:name], country_code: location[:country_code]) %>
+<div class="container flex flex-col items-center justify-center h-screen">
+  <%= form_tag('/', method: 'get') do %>
+    <div class="flex items-center mb-4">
+      <%= label_tag(:location, "Location:", class: "mr-2") %>
+      <%= text_field_tag(:search_query, "#{params[:search_query]}", class: "border rounded py-2 px-3") %>
+      <%= submit_tag('Search', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold ml-4 py-2 px-4 rounded") %>
+    </div>
   <% end %>
-</ul>
+  <ul id="location-results" class="w-3/12 mt-8">
+    <% @locations.each do |location| %>
+      <li class="flex justify-between items-center mb-4">
+        <span><%= link_to "#{location[:name]}, #{location[:country_code]}", view_weather_path(location: location[:name], country_code: location[:country_code]) %></span>
+        <span><%= link_to "View Weather", view_weather_path(location: location[:name], country_code: location[:country_code]), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %></span>
+      </li>
+    <% end %>
+  </ul>
+</div>
