@@ -31,8 +31,12 @@ class LocationsController < ApplicationController
   def remove_from_favorites
     location = Location.find(params[:location_id])
     location.destroy!
+
     respond_to do |format|
-      format.html { redirect_to favorite_locations_path }
+      format.html {
+        flash[:notice] = "Location removed from favorites successfully"
+        redirect_to favorite_locations_path
+      }
       format.json { render json: { message: "Location removed from favorites successfully" }, status: :ok }
     end
   end

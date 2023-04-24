@@ -29,9 +29,11 @@ class DashboardController < ApplicationController
         format.json { render json: { locations: @locations } }
       end
     else
-      flash.now[:warning] = "Location not found" if params[:search_query].present?
       respond_to do |format|
-        format.html { render "search_locations" }
+        format.html {
+          flash.now[:warning] = "Location not found" if params[:search_query].present?
+          render "search_locations"
+        }
         format.json { render json: { error: "Location not found" }, status: :not_found }
       end
     end
