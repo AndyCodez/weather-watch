@@ -1,5 +1,11 @@
-    <% flash.each do |type, message| %>
-  <div class="alert alert-<%= type %>">
-    <%= message %>
-  </div>
+<% flash.each do |message_type, message| %>
+  <% if message_type == 'notice' %>
+    <div class="bg-blue-100 border border-teal-400 text-teal-700 px-4 py-3 rounded relative">
+      <%= message %>
+    </div>
+  <% else %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+      <%= message %>
+    </div>
+  <% end %>
 <% end %>
