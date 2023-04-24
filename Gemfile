@@ -67,3 +67,5 @@ gem "httparty", "~> 0.21.0"
 gem "dotenv-rails", groups: [:development, :test]
 
 gem "devise", "~> 4.9"
+# For code coverage analysis
+gem "simplecov", require: false, group: :test

@@ -39,3 +39,6 @@ yarn-debug.log*
 !/app/assets/builds/.keep
 
 .env
+
+# Ignore code coverage analysis results
+coverage/
