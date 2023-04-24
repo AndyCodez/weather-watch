@@ -3,7 +3,7 @@
   <ul>
     <% @locations.each do |location| %>
       <li>
-        <%= "#{location.name}, #{location.country_code}" %>
+        <%= link_to "#{location.name}, #{location.country_code}", view_weather_path(location: location.name, country_code: location.country_code) %>
         <%= link_to "Remove from favorites", remove_from_favorites_path(location_id: location.id), method: :delete, class: "bg-blue-500 text-white py-2 px-4 rounded mr-4" %>
       </li>
     <% end %>
