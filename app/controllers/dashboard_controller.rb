@@ -4,19 +4,19 @@ class DashboardController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json {
+      format.json do
         render json: { weather_data: @weather_data }, status: :ok
-      }
+      end
     end
-  rescue => e
+  rescue StandardError => e
     puts "Error: #{e}"
-    flash[:warning] = "Unable to fetch weather data"
+    flash[:warning] = 'Unable to fetch weather data'
 
     respond_to do |format|
       format.html { redirect_to root_url }
-      format.json {
-        render json: { error: "Unable to fetch weather data" }, status: :internal_server_error
-      }
+      format.json do
+        render json: { error: 'Unable to fetch weather data' }, status: :internal_server_error
+      end
     end
   end
 
@@ -30,11 +30,11 @@ class DashboardController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html {
-          flash.now[:warning] = "Location not found" if params[:search_query].present?
-          render "search_locations"
-        }
-        format.json { render json: { error: "Location not found" }, status: :not_found }
+        format.html do
+          flash.now[:warning] = 'Location not found' if params[:search_query].present?
+          render 'search_locations'
+        end
+        format.json { render json: { error: 'Location not found' }, status: :not_found }
       end
     end
   end

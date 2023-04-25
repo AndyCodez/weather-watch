@@ -1,21 +1,25 @@
 class LocationsController < ApplicationController
   def add_to_favorites
-    location = current_user.locations.build(name: params[:location][:name], country_code: params[:location][:country_code])
+    location = current_user.locations.build(name: params[:location][:name],
+                                            country_code: params[:location][:country_code])
     if location.save
       respond_to do |format|
-        format.html {
-          flash[:notice] = "Added to favorites successfully."
+        format.html do
+          flash[:notice] = 'Added to favorites successfully.'
           redirect_to favorite_locations_path
-        }
-        format.json { render json: { status: "success", message: "Added to favorites successfully" }, status: :ok }
+        end
+        format.json { render json: { status: 'success', message: 'Added to favorites successfully' }, status: :ok }
       end
     else
       respond_to do |format|
-        format.html {
+        format.html do
           flash[:warning] = "#{location.errors.full_messages[0]}"
           redirect_to favorite_locations_path
-        }
-        format.json { render json: { status: "error", message: "#{location.errors.full_messages[0]}" }, status: :unprocessable_entity }
+        end
+        format.json do
+          render json: { status: 'error', message: "#{location.errors.full_messages[0]}" },
+                 status: :unprocessable_entity
+        end
       end
     end
   end
@@ -33,21 +37,21 @@ class LocationsController < ApplicationController
     location.destroy!
 
     respond_to do |format|
-      format.html {
-        flash[:notice] = "Location removed from favorites successfully"
+      format.html do
+        flash[:notice] = 'Location removed from favorites successfully'
         redirect_to favorite_locations_path
-      }
-      format.json { render json: { message: "Location removed from favorites successfully" }, status: :ok }
+      end
+      format.json { render json: { message: 'Location removed from favorites successfully' }, status: :ok }
     end
-  rescue => e
+  rescue StandardError => e
     puts "Error: #{e}"
 
     respond_to do |format|
-      format.html {
-        flash[:warning] = "Failed. Please try again."
+      format.html do
+        flash[:warning] = 'Failed. Please try again.'
         redirect_to favorite_locations_path
-      }
-      format.json { render json: { message: "Failed. Please try again." }, status: :ok }
+      end
+      format.json { render json: { message: 'Failed. Please try again.' }, status: :ok }
     end
   end
 end
