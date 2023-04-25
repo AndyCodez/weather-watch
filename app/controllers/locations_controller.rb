@@ -29,7 +29,7 @@ class LocationsController < ApplicationController
   end
 
   def remove_from_favorites
-    location = Location.find(params[:location_id])
+    location = Location.where(id: params[:location_id], user_id: current_user.id).first
     location.destroy!
 
     respond_to do |format|
@@ -38,6 +38,16 @@ class LocationsController < ApplicationController
         redirect_to favorite_locations_path
       }
       format.json { render json: { message: "Location removed from favorites successfully" }, status: :ok }
+    end
+  rescue => e
+    puts "Error: #{e}"
+
+    respond_to do |format|
+      format.html {
+        flash[:warning] = "Failed. Please try again."
+        redirect_to favorite_locations_path
+      }
+      format.json { render json: { message: "Failed. Please try again." }, status: :ok }
     end
   end
 end
