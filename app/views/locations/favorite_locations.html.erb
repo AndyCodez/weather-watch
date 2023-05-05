@@ -3,12 +3,14 @@
   <% if @locations.count > 0 %>
     <ul class="list-disc pl-4">
       <% @locations.each do |location| %>
-        <li class="flex justify-between items-center mb-4 w-3/12">
+        <li class="flex justify-between items-center mb-4">
           <span>
             <%= link_to "#{location.name}, #{location.country_code}", view_weather_path(location: location.name, country_code: location.country_code), class: "text-blue-500 hover:underline" %>
           </span>
           <span>
-            <%= link_to "Remove", remove_from_favorites_path(location_id: location.id), method: :delete, class: "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" %>
+            <%= form_with(url: remove_from_favorites_path(location_id: location.id), method: :delete) do |f| %>
+              <%= f.submit "Remove from favorites", class: "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" %>
+            <% end %>
           </span>
         </li>
       <% end %>

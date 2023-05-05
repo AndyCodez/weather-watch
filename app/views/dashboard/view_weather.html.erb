@@ -8,7 +8,6 @@
     <% else %>
       <%= form_with(url: add_to_favorites_path(location: @weather_data[:location]),
              method: :post, class: "inline-block") do |f| %>
-        <%= f.hidden_field :location, value: @weather_data[:location] %>
         <%= f.submit "Add to favorites", class: "bg-blue-500 text-white py-2 px-4 rounded mr-4" %>
       <% end %>
     <% end %>
