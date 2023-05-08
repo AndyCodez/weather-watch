@@ -21,4 +21,4 @@ RUN bundle install --jobs 4 --retry 3
 COPY . .
 
 # Set entrypoint
-CMD ["bundle", "exec", "rails", "db:create"] && ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"] 
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"] 
